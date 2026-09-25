@@ -768,7 +768,7 @@ var SHOTS = [
   {id:"hf_20260922_194349_04e89718-4214-4aff-bac5-490462bbfe2f", title:"Small Weather", place:"Costa Rica · Osa Peninsula", note:"Rain had just stopped. Everything on that branch was the size of a thumbnail and lit like a stage."},
   {id:"hf_20260922_194417_2c031e22-2fad-4c81-a544-83cd6bba1c33", title:"Against the Weather", place:"Alaska · Chilkat Valley", note:"Shot at a thousandth of a second into a rising storm. The light lasted eleven minutes."},
   {id:"hf_20260922_194349_a39c3226-7848-4b15-b840-98ad8aec467b", title:"The Pale Edge", place:"India · Bandhavgarh", note:"Almost entirely hidden. I only found the frame because the foliage stopped moving in the wrong place."},
-  {id:"hf_20260922_194417_555e4d90-f35f-4a1a-8c75-def1e8b71988", title:"Perfect Arithmetic", place:"Indonesia · Raja Ampat", note:"Coiled with a precision that looks designed. Nothing about it is — it is just the cheapest way to hold heat."},
+  {id:"hf_20260922_194417_555e4d90-f35f-4a1a-8c75-def1e8b71988", title:"Perfect Arithmetic", place:"Indonesia · Raja Ampat", note:"Coiled with a precision that looks designed. Nothing about it is — it is just the cheapest way to hold heat.", src:"images/harvest-festival.jpg", filter:"saturate(.62) brightness(.82) contrast(1.08) sepia(.08)"},
   {id:"hf_20260922_194417_e525a243-03c8-454b-83b4-60f541baf70a", title:"Shallow Water", place:"French Polynesia · Fakarava", note:"Three metres down on a single breath. It passed close enough that I stopped composing and simply held the camera still."},
   {id:"hf_20260922_194349_ec830e6f-b8e6-4569-8540-ee7f33902c53", title:"Two of Nine", place:"India · Ranthambore", note:"Siblings resting out the afternoon heat. The second one never opened its eyes."},
   {id:"hf_20260922_194417_35a9af5f-bd07-45a7-bb73-08b47d19d530", title:"Low Ground", place:"Nepal · Chitwan", note:"Flat on the ground at her eye level, which is the only honest angle for an animal that hunts from there."},
@@ -931,8 +931,9 @@ function bump(){
   bar.style.transform = "scaleX(" + pr + ")";
 }
 function loadShot(s){
-  decodeTo(thumbUrl(s.id), cardDecodeMax(), function(url){
+  decodeTo(s.src || thumbUrl(s.id), cardDecodeMax(), function(url){
     s.url = url;
+    if (s.filter){ s.cardImg.style.filter = s.filter; s.gridImg.style.filter = s.filter; }
     s.cardImg.onload = function(){ s.cardImg.classList.add("in"); };
     s.cardImg.src = url;
     s.gridImg.src = url;
@@ -1220,12 +1221,13 @@ function openShot(idx, srcEl){
   litTitle.textContent = s.title;
   litWhere.textContent = s.place;
   litNote.textContent = s.note;
+  litImg.style.filter = s.filter || "";
   // show the already-decoded card image immediately
-  litImg.src = s.url || thumbUrl(s.id);
+  litImg.src = s.url || s.src || thumbUrl(s.id);
   // swap in the full still once it has loaded
   var full = new Image();
   full.onload = function(){ if (token === openToken) litImg.src = full.src; };
-  full.src = fullUrl(s.id);
+  full.src = s.src || fullUrl(s.id);
 
   doc.documentElement.style.overflow = "hidden";
   body.classList.add("lit");
