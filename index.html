@@ -619,31 +619,6 @@ body.menuopen #menu{ clip-path:inset(0); pointer-events:auto; }
   to{ opacity:1; transform:none; }
 }
 
-/* ---------- CUSTOM CURSOR ---------- */
-#dot{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:300;
-  width:19px;
-  height:19px;
-  margin:-9.5px 0 0 -9.5px;
-  border-radius:50%;
-  background:rgba(214,212,209,.9);
-  mix-blend-mode:difference;
-  border:1px solid transparent;
-  pointer-events:none;
-  transition:width .35s ease, height .35s ease, margin .35s ease, background .35s ease, border-color .35s ease;
-}
-#dot.wide{
-  width:52px;
-  height:52px;
-  margin:-26px 0 0 -26px;
-  background:rgba(244,242,239,.14);
-  border-color:rgba(244,242,239,.75);
-}
-@media (hover:none),(pointer:coarse){ #dot{ display:none; } }
-
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:900px){
   .bio{ max-width:min(420px, calc(100vw - var(--pad)*2 - var(--safe-left) - var(--safe-right))); }
@@ -776,8 +751,6 @@ body.menuopen #menu{ clip-path:inset(0); pointer-events:auto; }
   <div class="tag">Field Notes 2026</div>
 </div>
 
-<div id="dot"></div>
-
 <script>
 (function(){
 "use strict";
@@ -852,7 +825,6 @@ var litTitle = doc.getElementById("litTitle");
 var litWhere = doc.getElementById("litWhere");
 var litNote = doc.getElementById("litNote");
 var avatar = doc.getElementById("avatar");
-var dot = doc.getElementById("dot");
 
 // keep the cards from shifting while the page is locked during splash/film
 doc.documentElement.style.overflow = "hidden";
@@ -1303,27 +1275,6 @@ window.addEventListener("keydown", function(e){
     else if (body.classList.contains("gridview")) toggleGrid(false);
   }
 });
-
-/* ---------- custom cursor ---------- */
-var fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
-if (fine){
-  var mx = window.innerWidth/2, my = window.innerHeight/2;
-  var dx2 = mx, dy2 = my;
-  window.addEventListener("pointermove", function(e){
-    if (e.pointerType && e.pointerType !== "mouse" && e.pointerType !== "pen") return;
-    mx = e.clientX; my = e.clientY;
-    var t = e.target.closest ? e.target.closest(".card, a, button, #grid figure") : null;
-    dot.classList.toggle("wide", !!t);
-  });
-  (function cursorLoop(){
-    dx2 += (mx - dx2) * 0.2;
-    dy2 += (my - dy2) * 0.2;
-    dot.style.transform = "translate3d(" + dx2 + "px," + dy2 + "px,0)";
-    requestAnimationFrame(cursorLoop);
-  })();
-} else {
-  dot.style.display = "none";
-}
 
 /* ---------- relayout on resize ---------- */
 var lastW = window.innerWidth, lastH = window.innerHeight;
