@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260923_083259_8dc6261a-61b2-473e-b6f8-73171340c69e.png" alt="Ethan Vale — I See Through the Wild" width="100%" />
+<img src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260923_083259_8dc6261a-61b2-473e-b6f8-73171340c69e.png" alt="Family Orbit — I See Through the Wild" width="100%" />
 
-# 🦅 Ethan Vale — I See Through the Wild
+# 🦅 Family Orbit — I See Through the Wild
 
 ### An immersive, single-file wildlife-photography archive with a 3D photo sphere
 
@@ -31,7 +31,7 @@ A hand-built, dependency-free portfolio experience — a black editorial archive
 
 ## 📖 Overview
 
-**Ethan Vale — I See Through the Wild** is a premium, editorial one-page portfolio for a fictional wildlife photographer. It is intentionally **dependency-light**: no framework, no bundler, no build step — just clean HTML, one `<style>` block and one `<script>`, so it clones and runs anywhere in seconds.
+**Family Orbit — I See Through the Wild** is a premium, editorial one-page portfolio for a fictional wildlife photographer. It is intentionally **dependency-light**: no framework, no bundler, no build step — just clean HTML, one `<style>` block and one `<script>`, so it clones and runs anywhere in seconds.
 
 The experience is anchored by a **3D Fibonacci photo sphere** of 21 stills that you drag to rotate, a **scroll-driven zoom**, and a centered headline that stays locked to the optical centre of the ring while the photographs turn around it. Every image is decoded and down-scaled on a `<canvas>` at runtime for crisp, lightweight cards.
 
