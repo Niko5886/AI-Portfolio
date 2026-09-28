@@ -402,6 +402,8 @@ body.gridview #grid{ opacity:1; pointer-events:auto; }
   transition:transform .8s ease, opacity .8s ease;
 }
 #grid figure:hover img{ transform:scale(1.05); opacity:1; }
+/* portrait shots show whole (letterboxed) instead of being cropped to 3:2 */
+#grid figure.tall img{ object-fit:contain; }
 #grid figcaption{
   position:absolute;
   left:0;
@@ -455,6 +457,8 @@ body.lit #lit{ opacity:1; pointer-events:auto; }
   object-fit:cover;
   border-radius:2px;
 }
+/* portrait shots show whole (letterboxed) instead of being cropped to 3:2 */
+#lit .shot.tall img{ object-fit:contain; }
 #lit .close{
   position:absolute;
   top:12px;
@@ -848,6 +852,7 @@ SHOTS.forEach(function(s){
   s.cardImg = img;
 
   var gfig = doc.createElement("figure");
+  if (s.tall) gfig.classList.add("tall");
   gfig.setAttribute("data-idx", s.idx);
   var gimg = doc.createElement("img");
   gimg.alt = s.title;
@@ -1222,6 +1227,7 @@ function openShot(idx, srcEl){
   litWhere.textContent = s.place;
   litNote.textContent = s.note;
   litImg.style.filter = s.filter || "";
+  litImg.closest(".shot").classList.toggle("tall", !!s.tall);
   // show the already-decoded card image immediately
   litImg.src = s.url || s.src || thumbUrl(s.id);
   // swap in the full still once it has loaded
