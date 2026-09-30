@@ -704,7 +704,7 @@ body.menuopen #menu{ clip-path:inset(0); pointer-events:auto; }
     <img id="avatar" width="52" height="52" alt="Family Orbit">
     <b>Family Orbit</b>
   </div>
-  <p>Wildlife photography is less about taking pictures and more about learning when not to move. Every frame in this archive was captured in natural conditions without intervention.</p>
+  <p>AI-Native Developer &amp; Creator of Innovative Projects.</p>
 </aside>
 
 <div class="colophon chrome">Family Notes 2026</div>
@@ -946,7 +946,7 @@ function loadShot(s){
   });
 }
 SHOTS.forEach(loadShot);
-decodeTo(thumbUrl(AVATAR_ID), 160, function(url){ avatar.src = url; });
+decodeTo("images/profile-desk.jpg", 160, function(url){ avatar.src = url; });
 
 var filmCounted = false;
 function countFilm(){ if(!filmCounted){ filmCounted = true; bump(); } }
